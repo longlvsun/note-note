@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  php-apache:
+    image: php:apache
+    ports:
+      - 8080:80
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - mysql-db
+    command: bash -c "
+      a2enmod rewrite &&
+      apache2-foreground"
+
+  db-mgr:
+    image: phpmyadmin
+    ports:
+      - 1888:80
+    environment:
+      PMA_HOST: note-note-mysql-db-1
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql
+    volumes:
+      - ./data/db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: noob
+      MYSQL_USER: noob
+      MYSQL_PASSWORD: noob
