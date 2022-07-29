@@ -6,7 +6,6 @@ function to_login() {
   if ($_SERVER['REQUEST_URI'] !== '/login/') {
     header('Location: /login/');
   }
-  exit();
 }
 
 function get_uid() {
@@ -29,6 +28,7 @@ $uid = get_uid();
 
 if ($uid === false) {
   to_login();
+  return;
 }
 
 $uid = mysqli_real_escape_string($dbconn, $uid);
@@ -38,6 +38,7 @@ $res = $res->fetch_assoc();
 if (!$res) {
   session_destroy();
   to_login();
+  return;
 }
 
 $cur_user = $res;
