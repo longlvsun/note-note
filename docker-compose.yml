@@ -9,6 +9,7 @@ services:
     depends_on:
       - mysql-db
     command: bash -c "
+      docker-php-ext-install mysqli &&
       a2enmod rewrite &&
       apache2-foreground"
 
