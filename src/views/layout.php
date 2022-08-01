@@ -1,4 +1,6 @@
 <?php
+global $title;
+global $content;
 if (empty($title)) {
   $title = 'Note Note';
 }

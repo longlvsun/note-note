@@ -1,8 +1,9 @@
 <?php
 namespace Ctrl;
 
-require_once __DIR__ . '/user.controller.php';
+require_once __DIR__ . '/../config/config.php';
 use Ctrl;
+use Conf;
 
 class Home {
   static function login() {
@@ -14,17 +15,9 @@ class Home {
   }
 
   static function home() {
-    ob_start();
-    include_once __DIR__ . '/../views/header.php';
-    $content = ob_get_clean();
-    ob_start();
-    include_once __DIR__ . '/../views/main.php';
-    $content .= ob_get_clean();
-    ob_start();
-    include_once __DIR__ . '/../views/footer.php';
-    $content .= ob_get_clean();
-
-    include_once __DIR__ . '/../views/layout.php';
+    global $cur_user;
+    $cur_user = Ctrl\login_guard();
+    Conf\render_multiple(['header', 'main', 'footer']);
   }
 }
 ?>

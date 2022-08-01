@@ -1,3 +1,6 @@
+<?php
+global $err;
+?>
 <section>
 <div class="row justify-content-sm-center">
   <div class="col-xl-5 col-lg-6 col-md-8 col-sm-8 pt-5">

@@ -16,4 +16,24 @@ function DbConn() {
 
   return $dbconn;
 }
+
+function render($file_name) {
+  global $content;
+  ob_start();
+  include_once __DIR__ . "/../views/$file_name.php";
+  $content = ob_get_clean();
+
+  include_once __DIR__ . '/../views/layout.php';
+}
+
+function render_multiple($file_names) {
+  global $content;
+  $content = join(array_map(function($fn) {
+    ob_start();
+    include_once __DIR__ . "/../views/$fn.php";
+    return ob_get_clean();
+  }, $file_names));
+
+  include_once __DIR__ . '/../views/layout.php';
+}
 ?>
