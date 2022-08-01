@@ -1,7 +1,7 @@
 <?php
 namespace Conf;
 
-define('DB_SERVER', 'note-note-mysql-db-1');
+define('DB_SERVER', 'mysql-db');
 define('DB_USERNAME', 'noob');
 define('DB_PASSWORD', 'noob');
 define('DB_NAME', 'noob');

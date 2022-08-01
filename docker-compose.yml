@@ -18,7 +18,7 @@ services:
     ports:
       - 1888:80
     environment:
-      PMA_HOST: note-note-mysql-db-1
+      PMA_HOST: mysql-db
     depends_on:
       - mysql-db
 
