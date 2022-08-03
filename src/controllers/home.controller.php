@@ -23,5 +23,9 @@ class Home {
     $cur_user = Ctrl\login_guard();
     Conf\render_multiple(['header', 'main', 'footer']);
   }
+
+  static function note() {
+    return Ctrl\Note::home();
+  }
 }
 ?>
