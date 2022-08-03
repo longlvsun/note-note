@@ -14,6 +14,10 @@ class Home {
     return Ctrl\User::logout();
   }
 
+  static function register() {
+    return Ctrl\User::register();
+  }
+
   static function home() {
     global $cur_user;
     $cur_user = Ctrl\login_guard();
