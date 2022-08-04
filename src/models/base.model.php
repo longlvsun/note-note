@@ -34,7 +34,6 @@ abstract class Base {
   function find($key, $val) {
     $sql = 'select * from ' . $this->real_string($this->table_name) . ' where ' .
       $this->real_string($key) . ' = ' . $this->real_val($val);
-
     return $this->run_query($sql);
   }
 
