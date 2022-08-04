@@ -18,13 +18,16 @@ class Note extends Base
     $this->title = $title;
   }
 
-  function save()
+function save() {}
+
+  static function _update($id, $content, $title)
   {
-    return $this->update(
+    $note = new Note();
+    return $note->update(
       'id',
-      $this->id,
-      ['owner', 'content'],
-      [$this->owner, $this->content]
+      $id,
+      ['content', 'title'],
+      [$content, $title]
     );
   }
 
@@ -109,10 +112,11 @@ class Note extends Base
     }
   }
 
-  static function deleteNoteById($id) {
+  static function deleteNoteById($id)
+  {
     $note = new Note();
     try {
-      $sql = 'DELETE FROM notes WHERE id ='. $note->real_val($id);
+      $sql = 'DELETE FROM notes WHERE id =' . $note->real_val($id);
       $res = $note->run_query($sql);
     } catch (\Exception $err) {
       if (preg_match('/fk_owner/i', $err)) {
@@ -120,5 +124,16 @@ class Note extends Base
       }
       throw $err;
     }
+  }
+
+  static function findById($id)
+  {
+    $note = new Note();
+    try {
+      $result = $note->find('id', $id)->fetch_assoc();
+    } catch (Exception $err) {
+      throw $err;
+    }
+    return $result;
   }
 }

@@ -19,7 +19,7 @@ class Home {
   }
 
   static function edit_note() {
-    return Ctrl\Note::home();
+    return Ctrl\Note::editNote();
   }
 
   static function home() {

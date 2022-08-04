@@ -1,30 +1,4 @@
-<div class="row w-75 mx-auto pt-5">
-  <?php
-  foreach ($note as $e) {
-    // echo json_encode($e);
-    echo "<div class='col-sm-4 h-100 pb-2'>";
-    echo "<div class='card bg-light shadow-lg'>";
-    echo "<div class='card-body'>";
-    echo "<h5 class='card-title '>$e[5]</h5>";
-    echo "<p class='card-text'>$e[4]</p>";
-    echo "</div>";
-    echo "<div class='card-body row pt-2'>";
-    echo "<form class='col-2' method='post'>";
-    echo "<input type='hidden' name='id' value='$e[0]'>";
-    echo "<input class='btn btn-outline-danger btn-sm' type='submit' name='delete' value='Xóa'>";
-    echo "</form>";
-    echo "<form class='col-3'  method='post'>";
-    echo "<input type='hidden' name='id' value='$e[0]'>";
-    echo "<input class='btn btn-outline-warning btn-sm' type='submit' name='edit' value='Chỉnh sửa'>";
-    echo "</form>";
-    echo "</div>";
-    echo "</div>";
-    echo "</div>";
-  }
-  ?>
-</div>
-
-<div class="container w-50 pt-5 pb-5">
+<div class="container w-50 pt-1 pb-5">
   <div class="card shadow-lg bg-light mt-5">
     <h5 class="card-header">Tạo ghi chú</h5>
     <div class="card-body">
@@ -49,3 +23,33 @@
   </div>
 
 </div>
+
+<div class="row w-75 mx-auto pt-5">
+  <?php
+  foreach ($note as $e) {
+    // echo json_encode($e);
+    echo "<div class='col-sm-4 h-100 pb-2'>";
+    echo "<div class='card bg-light shadow-lg'>";
+    echo "<div class='card-body'>";
+    echo "<h5 class='card-title '>$e[5]</h5>";
+    echo "<p class='card-text'>$e[4]</p>";
+    echo "</div>";
+    echo "<div class='card-body row pt-2'>";
+    echo "<form class='col-2' method='post'>";
+    echo "<input type='hidden' name='id' value='$e[0]'>";
+    echo "<input class='btn btn-outline-danger btn-sm' type='submit' name='delete' value='Xóa'>";
+    echo "</form>";
+    echo "<form class='col-3' action='http://localhost:8080/edit_note'  method='get'>";
+    echo "<input type='hidden' name='id' value='$e[0]'>";
+    echo "<input class='btn btn-outline-warning btn-sm' type='submit' value='Chỉnh sửa'>";
+    echo "</form>";
+    echo "</div>";
+    echo "</div>";
+    echo "</div>";
+  }
+  ?>
+</div>
+
+<a href="#" id="toTopBtn" class="cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out" data-abc="true"></a>
+
+

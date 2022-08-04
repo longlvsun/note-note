@@ -18,16 +18,16 @@ class Note
     $id = intval($cur_user->id);
     $note = Mod\Note::findByUser($id);
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'])) {
-      // global $err;
+      global $err;
       if (empty($_POST['title'])) {
-        // $err = 'missing username field';
+        $err = 'please input title';
         goto render_home;
       }
 
       $title = $_POST['title'];
 
       if (empty($_POST['content'])) {
-        // $err = 'missing username field';
+        $err = 'please input content';
         goto render_home;
       }
 
@@ -52,13 +52,34 @@ class Note
     include_once __DIR__ . '/../views/layout.php';
   }
 
-  static function add()
+
+  static function editNote()
   {
-    global $cur_user;
-    $cur_user = Ctrl\login_guard();
-    $id = intval($cur_user->id);
+    $id = intval($_GET['id']);
+    $editedNote = Mod\Note::findById($id);
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      global $err;
+      if (empty($_POST['title'])) {
+        $err = 'please input title';
+        goto render_edit_note;
+      }
+
+      $title = $_POST['title'];
+
+      if (empty($_POST['content'])) {
+        $err = 'please input content';
+        goto render_edit_note;
+      }
+
+      $content = $_POST['content'];
+      // $note = Mod\Note::update();
+      $updatedNote = Mod\Note::_update($id, $content, $title);
+      header('Location: /');
+    }
+    render_edit_note:
     include_once __DIR__ . '/../views/header.php';
-    include_once __DIR__ . '/../views/new_note.php';
+    include_once __DIR__ . '/../views/editNote.php';
     include_once __DIR__ . '/../views/layout.php';
   }
 }
