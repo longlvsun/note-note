@@ -13,6 +13,5 @@ create table notes(
     owner bigint unsigned not null references users(id),
     created_at datetime default current_timestamp,
     updated_at datetime default current_timestamp,
-    content text,
-    title varchar(255) not null
+    content text
 );
