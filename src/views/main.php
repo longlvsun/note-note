@@ -24,10 +24,11 @@
 
 </div>
 
-<div class="row w-75 mx-auto pt-5">
+<div class="row w-75 mx-auto pt-5 pb-5">
   <?php
   foreach ($note as $e) {
     // echo json_encode($e);
+    $newDate = date("d/m/Y", strtotime($e[2]));
     echo "<div class='col-sm-4 h-100 pb-2'>";
     echo "<div class='card bg-light shadow-lg'>";
     echo "<div class='card-body'>";
@@ -43,6 +44,9 @@
     echo "<input type='hidden' name='id' value='$e[0]'>";
     echo "<input class='btn btn-outline-warning btn-sm' type='submit' value='Chỉnh sửa'>";
     echo "</form>";
+    echo "</div>";
+    echo "<div class='card-footer text-muted '>";
+    echo "Last update at " . "$newDate";
     echo "</div>";
     echo "</div>";
     echo "</div>";
