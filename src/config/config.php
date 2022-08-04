@@ -36,4 +36,16 @@ function render_multiple($file_names) {
 
   include_once __DIR__ . '/../views/layout.php';
 }
+
+function get_time($date) {
+  $date = strtotime($date);
+  $day = date('d/m/y', $date);
+  if ($date >= strtotime('today')) {
+    $day = 'today';
+  } else if ($date >= strtotime('yesterday')) {
+    $day = 'yesterday';
+  }
+
+  return date('H:i:s', $date) . ' - ' . $day;
+}
 ?>

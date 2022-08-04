@@ -1,9 +1,7 @@
 <?php
 namespace Ctrl;
 
-require_once __DIR__ . '/../config/config.php';
 use Ctrl;
-use Conf;
 
 class Home {
   static function login() {
@@ -18,10 +16,16 @@ class Home {
     return Ctrl\User::register();
   }
 
+  static function edit_note() {
+    return Ctrl\Note::edit_note();
+  }
+
   static function home() {
     global $cur_user;
     $cur_user = Ctrl\login_guard();
-    Conf\render_multiple(['header', 'main', 'footer']);
+    return Ctrl\Note::home();
+    // Conf\render_multiple(['header', 'main', 'footer']);
   }
+
 }
 ?>

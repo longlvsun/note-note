@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap");
 :root {
   --header-height: 3rem;
   --nav-width: 68px;
   --first-color: #4723d9;
   --first-color-light: #afa5d9;
   --white-color: #f7f6fb;
-  --body-font: "Nunito", sans-serif;
+  --body-font: "Roboto", sans-serif;
   --normal-font-size: 1rem;
   --z-fixed: 100;
 }
@@ -18,13 +18,19 @@ body {
   position: relative;
   margin: var(--header-height) 0 0 0;
   padding: 0 1rem;
-  font-family: var(--body-font);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: var(--normal-font-size);
   transition: 0.5s;
 }
 a {
   text-decoration: none;
 }
+
+.main-color {
+  color: var(--bs-primary);
+}
+
 .header {
   width: 100%;
   height: var(--header-height);
@@ -40,7 +46,7 @@ a {
   transition: 0.5s;
 }
 .header_toggle {
-  color: var(--first-color);
+  color: var(--bs-primary);
   font-size: 1.5rem;
   cursor: pointer;
 }
@@ -61,7 +67,7 @@ a {
   left: -30%;
   width: var(--nav-width);
   height: 100vh;
-  background-color: var(--first-color);
+  background-color: var(--bs-primary);
   padding: 0.5rem 1rem 0 0;
   transition: 0.5s;
   z-index: var(--z-fixed);
@@ -129,6 +135,58 @@ a {
   background-color: #4723da;
   border-color: #4723da;
   color: var(--white-color);
+}
+
+.edit-button {
+  margin-right: 5px;
+}
+
+#toTopBtn {
+  position: fixed;
+  bottom: 26px;
+  right: 39px;
+  z-index: 98;
+  padding: 21px;
+  border-radius: 20px;
+  background-color: var(--bs-primary);
+}
+
+.js .cd-top--fade-out {
+  opacity: 0.5;
+}
+
+.js .cd-top--is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.js .cd-top {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
+}
+
+.cd-top {
+  position: fixed;
+  bottom: 20px;
+  bottom: var(--cd-back-to-top-margin);
+  right: 20px;
+  right: var(--cd-back-to-top-margin);
+  display: inline-block;
+  height: 40px;
+  height: var(--cd-back-to-top-size);
+  width: 40px;
+  width: var(--cd-back-to-top-size);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05) !important;
+  background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1571057658/cd-top-arrow.svg)
+    no-repeat center 50%;
+  background-color: hsla(5, 76%, 62%, 0.8);
+  background-color: hsla(
+    var(--cd-color-3-h),
+    var(--cd-color-3-s),
+    var(--cd-color-3-l),
+    0.8
+  );
 }
 
 @media screen and (min-width: 768px) {
