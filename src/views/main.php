@@ -1,15 +1,4 @@
 <?php
-function get_time($date) {
-  $date = strtotime($date);
-  $day = date('d/m/y', $date);
-  if ($date >= strtotime('today')) {
-    $day = 'today';
-  } else if ($date >= strtotime('yesterday')) {
-    $day = 'yesterday';
-  }
-
-  return date('H:i:s', $date) . ' - ' . $day;
-}
 ?>
 
 <div class="container w-50 pt-1 pb-5">
@@ -43,8 +32,8 @@ function get_time($date) {
   global $note;
   foreach (@$note as $e) {
     // echo json_encode($e);
-    $created = get_time($e->get_created());
-    $updated = get_time($e->get_updated());
+    $created = Conf\get_time($e->get_created());
+    $updated = Conf\get_time($e->get_updated());
     $ctn = strlen($e->content) > 250 ? substr($e->content, 0, 250) . '...' : $e->content;
     print "
   <div class='col-sm-4 h-100 pb-2'>

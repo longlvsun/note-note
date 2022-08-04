@@ -21,7 +21,7 @@ global $err;
           class="form-control"
           placeholder="Nội dung"
           id="ContentTextarea"
-          style="height: 60vh"
+          style="height: 55vh"
         ><?= $editedNote->content ?></textarea>
         <div class="d-flex justify-content-around"></div>
         <?php
@@ -33,6 +33,9 @@ global $err;
         <a class="btn btn-danger mt-4" href="/">Hủy</a>
         <input class="btn btn-primary btn-block mt-4" type="submit" value="Xác nhận" />
       </form>
+      <div class='card-footer text-muted '>
+        Created at <?= Conf\get_time($editedNote->get_created()) ?>, Last update at <?= Conf\get_time($editedNote->get_updated()) ?>
+      </div>
     </div>
   </div>
 </div>
