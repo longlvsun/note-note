@@ -3,6 +3,7 @@ require_once __DIR__ . '/controllers/index.php';
 
 // $cur_user = Ctrl\login_guard();
 // print json_encode($cur_user);
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 $ctrl = isset($_GET['ctrl']) ? $_GET['ctrl'] : 'home';
 $act = isset($_GET['act']) ? $_GET['act'] : 'home';

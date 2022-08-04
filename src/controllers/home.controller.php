@@ -1,9 +1,7 @@
 <?php
 namespace Ctrl;
 
-require_once __DIR__ . '/../config/config.php';
 use Ctrl;
-use Conf;
 
 class Home {
   static function login() {
@@ -19,7 +17,7 @@ class Home {
   }
 
   static function edit_note() {
-    return Ctrl\Note::editNote();
+    return Ctrl\Note::edit_note();
   }
 
   static function home() {

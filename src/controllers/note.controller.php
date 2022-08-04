@@ -3,20 +3,20 @@
 namespace Ctrl;
 
 require_once __DIR__ . '/../models/note.model.php';
+require_once __DIR__ . '/../config/config.php';
 
 use Mod;
 use Ctrl;
 use Conf;
+use Exception;
 
-
-class Note
-{
-  static function home()
-  {
+class Note {
+  static function home() {
     global $cur_user;
+    global $note;
+
     $cur_user = Ctrl\login_guard();
     $id = intval($cur_user->id);
-    $note = Mod\Note::findByUser($id);
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'])) {
       global $err;
       if (empty($_POST['title'])) {
@@ -32,31 +32,31 @@ class Note
       }
 
       $content = $_POST['content'];
-      $newNote = Mod\Note::createNewNote($id, $title, $content);
-      header('Location: /');
-      // $note = Mod\Note::findByUser($id);
-      // goto render_home;
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+      Mod\Note::new($id, $title, $content);
+      goto render_home;
+    } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
       $noteId = intval($_POST['id']);
-      $deletedNote = Mod\Note::deleteNoteById($noteId);
-      header('Location: /');
-      // $note = Mod\Note::findByUser($id);
-      // goto render_home;
+      Mod\Note::load($noteId)->delete();
+      goto render_home;
     }
 
-    render_home:
-    include_once __DIR__ . '/../views/header.php';
-    include_once __DIR__ . '/../views/main.php';
-    include_once __DIR__ . '/../views/layout.php';
+  render_home:
+    $note = Mod\Note::findByUser($id);
+    Conf\render_multiple(['header', 'main']);
   }
 
 
-  static function editNote()
-  {
+  static function edit_note() {
+    global $editedNote;
+    global $err;
+
     $id = intval($_GET['id']);
-    $editedNote = Mod\Note::findById($id);
+    $editedNote = Mod\Note::load($id);
+
+    if (!$editedNote) {
+      header('Location: /');
+      return 1;
+    }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       global $err;
@@ -73,13 +73,20 @@ class Note
       }
 
       $content = $_POST['content'];
-      // $note = Mod\Note::update();
-      $updatedNote = Mod\Note::_update($id, $content, $title);
+
+      try {
+        $editedNote->content = $content;
+        $editedNote->title = $title;
+        $editedNote->save();
+      } catch(Exception $err) {
+        goto render_edit_note;
+      }
+
       header('Location: /');
+      return 0;
     }
-    render_edit_note:
-    include_once __DIR__ . '/../views/header.php';
-    include_once __DIR__ . '/../views/editNote.php';
-    include_once __DIR__ . '/../views/layout.php';
+
+  render_edit_note:
+    Conf\render_multiple(['header', 'editNote']);
   }
 }
