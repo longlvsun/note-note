@@ -18,6 +18,10 @@ class Home {
     return Ctrl\User::register();
   }
 
+  static function edit_note() {
+    return Ctrl\Note::home();
+  }
+
   static function home() {
     global $cur_user;
     $cur_user = Ctrl\login_guard();

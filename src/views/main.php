@@ -9,13 +9,13 @@
     echo "<p class='card-text'>$e[4]</p>";
     echo "</div>";
     echo "<div class='card-body row pt-2'>";
-    echo "<form class='col-3' method='post'>";
+    echo "<form class='col-2' method='post'>";
     echo "<input type='hidden' name='id' value='$e[0]'>";
-    echo "<input class='btn btn-danger' type='submit' name='delete' value='Xóa'>";
+    echo "<input class='btn btn-outline-danger btn-sm' type='submit' name='delete' value='Xóa'>";
     echo "</form>";
     echo "<form class='col-3'  method='post'>";
     echo "<input type='hidden' name='id' value='$e[0]'>";
-    echo "<input class='btn btn-primary rounded' type='submit' name='edit' value='Chỉnh sửa'>";
+    echo "<input class='btn btn-outline-warning btn-sm' type='submit' name='edit' value='Chỉnh sửa'>";
     echo "</form>";
     echo "</div>";
     echo "</div>";
