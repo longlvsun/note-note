@@ -47,8 +47,11 @@ class Note {
 
 
   static function edit_note() {
+    global $cur_user;
     global $editedNote;
     global $err;
+
+    $cur_user = Ctrl\login_guard();
 
     $id = intval($_GET['id']);
     $editedNote = Mod\Note::load($id);
@@ -56,6 +59,10 @@ class Note {
     if (!$editedNote) {
       header('Location: /');
       return 1;
+    }
+
+    if ($editedNote->owner != $cur_user->id) {
+      header('Location: /');
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
