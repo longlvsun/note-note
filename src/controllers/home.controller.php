@@ -21,10 +21,7 @@ class Home {
   }
 
   static function home() {
-    global $cur_user;
-    $cur_user = Ctrl\login_guard();
     return Ctrl\Note::home();
-    // Conf\render_multiple(['header', 'main', 'footer']);
   }
 
 }

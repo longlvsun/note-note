@@ -48,4 +48,11 @@ function get_time($date) {
 
   return date('H:i:s', $date) . ' - ' . $day;
 }
+
+function to_login() {
+  if (!preg_match('/\/login/i', $_SERVER['REQUEST_URI'])) {
+    header('Location: /login');
+  }
+}
+
 ?>

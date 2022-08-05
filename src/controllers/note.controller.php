@@ -2,11 +2,12 @@
 
 namespace Ctrl;
 
+require_once __DIR__ . '/../config/middleware.php';
 require_once __DIR__ . '/../models/note.model.php';
 require_once __DIR__ . '/../config/config.php';
 
+use Mid;
 use Mod;
-use Ctrl;
 use Conf;
 use Exception;
 
@@ -15,7 +16,7 @@ class Note {
     global $cur_user;
     global $note;
 
-    $cur_user = Ctrl\login_guard();
+    $cur_user = Mid\login_guard();
     $id = intval($cur_user->id);
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'])) {
       global $err;
@@ -51,7 +52,7 @@ class Note {
     global $editedNote;
     global $err;
 
-    $cur_user = Ctrl\login_guard();
+    $cur_user = Mid\login_guard();
 
     $id = intval($_GET['id']);
     $editedNote = Mod\Note::load($id);
