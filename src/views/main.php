@@ -35,11 +35,13 @@
     $created = Conf\get_time($e->get_created());
     $updated = Conf\get_time($e->get_updated());
     $ctn = strlen($e->content) > 250 ? substr($e->content, 0, 250) . '...' : $e->content;
+    $title = htmlspecialchars($e->title);
+    $ctn = htmlspecialchars($ctn);
     print "
   <div class='col-sm-4 h-100 pb-2'>
     <div class='card bg-light shadow-lg'>
       <div class='card-body'>
-        <h5 class='card-title '><a href='/edit_note?id=$e->id'>$e->title</a></h5>
+        <h5 class='card-title '><a href='/edit_note?id=$e->id'>$title</a></h5>
         <p class='card-text'>$ctn</p>
       </div>
       <div class='card-body row pt-2'>

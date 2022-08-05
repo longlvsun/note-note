@@ -13,7 +13,7 @@ global $err;
           name="title"
           class="form-control mb-4"
           placeholder="Tên ghi chú"
-          value="<?= $editedNote->title ?>"
+          value="<?= htmlspecialchars($editedNote->title) ?>"
           required
         />
         <textarea
@@ -22,7 +22,7 @@ global $err;
           placeholder="Nội dung"
           id="ContentTextarea"
           style="height: 55vh"
-        ><?= $editedNote->content ?></textarea>
+        ><?= htmlspecialchars($editedNote->content) ?></textarea>
         <div class="d-flex justify-content-around"></div>
         <?php
         if (isset($err)) {
